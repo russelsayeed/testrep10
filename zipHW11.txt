@@ -1,0 +1,30 @@
+
+
+
+
+1. Create an Account
+2. Logout
+3. Log IN back again.
+4. Verify you were able to login
+4. Search for a Job and Change the Location something else from default.
+6. Verify Result showed up
+7. Go to Footer---Search Job Browse All Jobs as well.
+8. Filter before you search for a Job. Ex. 
+·         Technology
+·         Automation/QA
+
+9. Then Search. Verify the Result appears or not
+
+
+submit
+
+food =  ".//*[@id='browse_jobs_sections']/div/section[1]/ul/li[16]/p/a"
+restaurant  = ".//*[@id='browse_jobs_sections']/div/section/ul/li[1]/p/a"
+chef = ".//*[@id='browse_jobs_sections']/div/section/ul/li[1]/p/a"
+
+
+
+assert. https://www.ziprecruiter.com/e/chef-jobs-near-me
+
+
+html/body/div[2]/section/div/form/div[3]/input

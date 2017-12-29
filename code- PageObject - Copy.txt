@@ -1,0 +1,141 @@
+package PageObjectMethod;
+
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.ie.InternetExplorerDriver;
+
+public class mybrowsers 
+
+{
+ 
+	WebDriver driver;
+ 
+ 
+	public void browsers(String browserName, String url) 	
+	
+	{
+
+		if (browserName.equalsIgnoreCase("firefox")) 
+		{
+		driver = new FirefoxDriver();
+		}
+		else if(browserName.equalsIgnoreCase("chrome"))
+		{
+		System.setProperty("webdriver.chrome.driver", "C:\\Webdrivers Silenium\\chromedriver.exe");
+		driver= new ChromeDriver();
+		}
+		else if(browserName.equalsIgnoreCase("ie")) 
+		{
+		System.setProperty("webdriver.ie.driver", "C:\\Webdrivers Silenium\\IEDriverServer.exe");
+		driver = new InternetExplorerDriver();
+		}
+	
+		driver.manage().window().maximize();
+		driver.get(url);
+
+	}
+
+}
+
+==================================
+
+package PageObjectMethod;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+
+public class myelements extends mybrowsers
+
+
+
+{
+	
+	
+	By fname = By.name("firstname");
+	By lname = By.name("lastname");
+	By email = By.name("reg_email__");
+	By pwd   = By.name("reg_passwd__");
+	By month = By.id("month");
+	By day  = By.id("day"); 
+	By year  = By.id("year");
+	
+	
+}
+
+
+
+======================================
+
+
+
+package PageObjectMethod;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.support.ui.Select;
+
+public class methods extends myelements
+
+
+{
+	mybrowsers a = new mybrowsers();
+
+	public void openpage(String selectbrowser)
+	{
+		a.browsers(selectbrowser, "https://www.facebook.com/");
+	}
+	
+	public  void signup ()
+	{
+		a.driver.findElement(fname).sendKeys("java");
+		a.driver.findElement(lname).sendKeys("selenium");
+		a.driver.findElement(email).sendKeys("6463245678");
+		a.driver.findElement(pwd).sendKeys("java123456");
+
+		Select Smonth = new Select(a.driver.findElement(month));
+		Smonth.selectByIndex(10); 
+		
+		Select Sday = new Select(a.driver.findElement(day));
+		Sday.selectByIndex(01);	
+		
+		Select Syear = new Select(a.driver.findElement(year));
+		Syear.selectByValue("2001");
+	}
+	
+	
+}
+=====================================
+
+package PageObjectMethod;
+
+import org.testng.annotations.BeforeTest;
+import org.testng.annotations.Test;
+
+public class run extends methods
+
+
+
+{
+	methods b = new methods();
+	
+	@BeforeTest 
+	
+	public void mybrowser()
+	{
+	 b.openpage("firefox");
+	}
+	
+@Test 
+	
+	public void fbSginup()
+	
+	{
+		b.signup();
+	}
+
+	
+}
+=======================================
+
